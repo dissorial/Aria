@@ -7,9 +7,10 @@ const RelatedSongs = ({
   handlePauseClick,
   handlePlayClick,
   artistId,
+  cardTitle,
 }) => (
   <div className="">
-    <h2 className="text-white text-3xl font-bold mb-4">Related Songs</h2>
+    <h2 className="text-white text-3xl font-bold mb-4">{cardTitle}</h2>
     {data?.slice(0, 10).map((song, i) => (
       <SongBar
         key={`${artistId}-${song.key}-${i}`}

@@ -11,6 +11,7 @@ const Player = ({
   onLoadedData,
   repeat,
 }) => {
+  console.log('activesong', activeSong);
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
@@ -31,7 +32,7 @@ const Player = ({
 
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={activeSong?.attributes?.previews[0]?.url}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}

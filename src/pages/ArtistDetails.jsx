@@ -16,9 +16,8 @@ const ArtistDetails = () => {
     error,
   } = useGetArtistDetailsQuery(artistId);
 
-  console.log(
-    artistData?.data[0]?.views['top-songs']?.data[0].attributes.previews[0].url,
-  );
+  // console.log('artist data', artistData?.data[0]?.views['top-songs']?.data);
+  const data = artistData?.data[0]?.views['top-songs']?.data;
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -29,26 +28,26 @@ const ArtistDetails = () => {
     dispatch(playPause(true));
   };
 
+  // song data in artistData?.data[0]?.views['top-songs']?.data
+  // pass this to component
+
+  // song urls in artistData?.data[0]?.views['top-songs']?.data[0].attributes.previews[0].url
+
   if (isFetchingArtistDetails) return <Loader title="Loading artist details" />;
   if (error) return <Error />;
 
   return (
     <div className="py-24 px-6 sm:px-8 md:px-10 lg:px-12 flex flex-col">
       <DetailsHeader artistId={artistId} artistData={artistData?.data[0]} />
-      <div className="flex flex-col lg:flex-row">
-        <div className="w-full lg:w-1/2">
-          {/* {artistData?.data[0]?.views['top-songs']?.data.map((song) => (
-            <p className="text-white text-xl p-2">{song.attributes.name}</p>
-          ))} */}
-          <RelatedSongs
-            data={artistData?.data[0]?.views['top-songs']?.data}
-            artistId={artistId}
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            handlePauseClick={handlePauseClick}
-            handlePlayClick={handlePlayClick}
-          />
-        </div>
+      <div className="w-full">
+        <RelatedSongs
+          data={artistData?.data[0].views['top-songs']?.data}
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          handlePauseClick={handlePauseClick}
+          handlePlayClick={handlePlayClick}
+          cardTitle="artistdetails related"
+        />
       </div>
     </div>
   );
