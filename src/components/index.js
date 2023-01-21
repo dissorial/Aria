@@ -1,25 +1,35 @@
 import Sidebar from './Sidebar';
 import Searchbar from './Searchbar';
 import SongCard from './SongCard';
-import TopPlay from './TopPlay';
 import ArtistCard from './ArtistCard';
-import DetailsHeader from './DetailsHeader';
+import ArtistDetailsHeader from './ArtistDetailsHeader';
+import SongDetailsHeaderV1 from './SongDetailsHeaderV1';
+import SongDetailsHeaderV2 from './SongDetailsHeaderV2';
 import SongBar from './SongBar';
-import RelatedSongs from './RelatedSongs';
+import RelatedSongsV1 from './RelatedSongsV1';
+import TopArtistSongs from './TopAristSongs';
 import MusicPlayer from './MusicPlayer';
 import Loader from './Loader';
 import Error from './Error';
+import SongDetailsLyricsV1 from './SongDetailsLyricsV1';
+import SongDetailsLyricsV2 from './SongDetailsLyricsV2';
+import SidebarNew from './SidebarNew';
 
 export {
-  TopPlay,
   Sidebar,
   SongCard,
   Searchbar,
   ArtistCard,
-  DetailsHeader,
+  SongDetailsHeaderV1,
+  SongDetailsHeaderV2,
+  ArtistDetailsHeader,
   SongBar,
-  RelatedSongs,
+  RelatedSongsV1,
+  TopArtistSongs,
   MusicPlayer,
   Loader,
   Error,
+  SongDetailsLyricsV1,
+  SongDetailsLyricsV2,
+  SidebarNew,
 };

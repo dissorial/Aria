@@ -1,50 +1,77 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+  HiOutlineHome,
+  HiOutlineMenu,
+  HiOutlineHashtag,
+  HiOutlineUserGroup,
+} from 'react-icons/hi';
+import { RiCloseLine } from 'react-icons/ri';
+import { logo } from '../assets';
 
-const Sidebar = () => (
-  <div>
-    <nav className="lg:hidden absolute z-40 w-full py-6 px-6 ">
-      <div className="flex items-center justify-between">
-        <button
-          type="button"
-          className="navbar-burger flex items-center rounded focus:outline-none"
-        >
-          <title>Mobile menu</title>
-        </button>
-      </div>
-    </nav>
-    <div className="hidden lg:block navbar-menu relative z-50">
-      <div className="navbar-backdrop fixed lg:hidden inset-0 bg-gray-800 opacity-10" />
-      <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-3/4 lg:w-52 sm:max-w-xs pt-6 pb-8 bg-gray-800 overflow-y-auto">
-        <div className="flex w-full items-center px-6 pb-6 mb-6 lg:border-b border-gray-700" />
-        <div className="px-4 pb-6">
-          <ul className="mb-8 text-sm font-medium">
-            <li>
-              <span className="flex items-center pl-3 py-3 pr-4 text-gray-50 hover:bg-gray-900 rounded">
-                <Link to="/">Discover</Link>
-              </span>
-            </li>
-            <li>
-              <span className="flex items-center pl-3 py-3 pr-4 text-gray-50 hover:bg-gray-900 rounded">
-                <Link to="/">item two</Link>
-              </span>
-            </li>
-            <li>
-              <span className="flex items-center pl-3 py-3 pr-4 text-gray-50 hover:bg-gray-900 rounded">
-                <Link to="/">item three</Link>
-              </span>
-            </li>
-            <li>
-              <span className="flex items-center pl-3 py-3 pr-4 text-gray-50 hover:bg-gray-900 rounded">
-                <Link to="/">item four</Link>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div className="mx-auto lg:ml-52" />
+const links = [
+  { name: 'Discover', to: '/', icon: HiOutlineHome },
+  { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
+];
+
+const NavLinks = ({ handleClick }) => (
+  <div className="mt-10">
+    {links.map((item) => (
+      <NavLink
+        key={item.name}
+        to={item.to}
+        end
+        className="flex flex-row justify-start items-center my-8 text-sm font-medium text-gray-400 hover:text-teal-400"
+        onClick={() => handleClick && handleClick()}
+      >
+        <item.icon className="w-6 h-6 mr-2" />
+        {item.name}
+      </NavLink>
+    ))}
   </div>
 );
+
+const Sidebar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <>
+      <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-black/50">
+        <img src={logo} alt="logo" className="w-full h-10 object-contain" />
+        <NavLinks />
+      </div>
+
+      {/* Mobile sidebar */}
+      <div
+        className="absolute md:hidden bg-black/80 p-4 w-full
+        flex flex-row justify-end items-center
+      "
+      >
+        <img src={logo} alt="logo" className="w-full h-8 object-contain" />
+        {!mobileMenuOpen ? (
+          <HiOutlineMenu
+            className="w-8 h-8 mr-2 text-white cursor-pointer"
+            onClick={() => setMobileMenuOpen(true)}
+          />
+        ) : (
+          <RiCloseLine
+            className="w-8 h-8  mr-2 text-white cursor-pointer"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </div>
+
+      <div
+        className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-teal-900 to-black/80 backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${
+          mobileMenuOpen ? 'left-0' : '-left-full'
+        }`}
+      >
+        {/* <img src={logo} alt="logo" className="w-full h-14 object-contain" /> */}
+        <NavLinks handleClick={() => setMobileMenuOpen(false)} />
+      </div>
+    </>
+  );
+};
 
 export default Sidebar;

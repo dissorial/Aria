@@ -1,17 +1,21 @@
 import Discover from './Discover';
-import TopArtists from './TopArtists';
 import ArtistDetails from './ArtistDetails';
-import SongDetails from './SongDetails';
+import SongDetailsV1 from './SongDetailsV1';
+import SongDetailsV2 from './SongDetailsV2';
 import Search from './Search';
 import TopCharts from './TopCharts';
-import AroundYou from './AroundYou';
+import TopArtists from './TopArtists';
+import SongDetailsContainerV2 from './SongDetailsContainerV2';
+import SongDetailsContainerV1 from './SongDetailsContainerV1';
 
 export {
   Discover,
   Search,
-  TopArtists,
   ArtistDetails,
-  SongDetails,
+  SongDetailsV1,
+  SongDetailsV2,
   TopCharts,
-  AroundYou,
+  SongDetailsContainerV2,
+  SongDetailsContainerV1,
+  TopArtists,
 };

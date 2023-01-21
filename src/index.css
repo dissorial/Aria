@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 /* Active Navigation Link */
-.active {
-  @apply text-cyan-500;
-}
+ .active {
+  @apply text-teal-500;
+} 
 
-.active svg {
-  @apply text-cyan-500;
-}
+ .active svg {
+  @apply text-teal-500;
+} 
 
 .bar:nth-child(2) {
   animation-delay: 0.2s;

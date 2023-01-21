@@ -7,7 +7,7 @@ export const shazamCoreApi = createApi({
     prepareHeaders: (headers) => {
       headers.set(
         'X-RapidAPI-Key',
-        '26fe7ce363mshe672d53fd5f1e8bp15b870jsn535038917ad2',
+        import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY,
       );
       return headers;
     },
@@ -16,7 +16,7 @@ export const shazamCoreApi = createApi({
     getTopCharts: builder.query({
       query: () => '/v1/charts/world',
     }),
-    getSongDetails: builder.query({
+    getSongDetailsV1: builder.query({
       query: ({ songid }) => `/v1/tracks/details?track_id=${songid}`,
     }),
 
@@ -27,12 +27,27 @@ export const shazamCoreApi = createApi({
     getArtistDetails: builder.query({
       query: (artistid) => `/v2/artists/details?artist_id=${artistid}`,
     }),
+
+    getSearchResults: builder.query({
+      query: (searchTerm) => `/v1/search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}`,
+    }),
+
+    getSongDetailsV2: builder.query({
+      query: ({ songid }) => `/v2/tracks/details?track_id=${songid}`,
+    }),
+
+    getSongsByGenre: builder.query({
+      query: (genre) => `/v1/charts/genre-world?genre_code=${genre}`,
+    }),
   }),
 });
 
 export const {
   useGetTopChartsQuery,
-  useGetSongDetailsQuery,
+  useGetSongDetailsV1Query,
   useGetSongRelatedQuery,
   useGetArtistDetailsQuery,
+  useGetSearchResultsQuery,
+  useGetSongDetailsV2Query,
+  useGetSongsByGenreQuery,
 } = shazamCoreApi;
