@@ -12,6 +12,9 @@ const Player = ({
   repeat,
 }) => {
   const ref = useRef(null);
+  const src = activeSong.hub
+    ? activeSong.hub.actions[1].uri
+    : activeSong.attributes.previews[0].url;
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
     if (isPlaying) {
@@ -31,7 +34,7 @@ const Player = ({
 
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={src}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}
