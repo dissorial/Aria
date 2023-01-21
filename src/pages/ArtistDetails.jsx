@@ -37,7 +37,7 @@ const ArtistDetails = () => {
   if (error) return <Error />;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pb-24">
       <ArtistDetailsHeader
         artistId={artistId}
         artistData={artistData?.data[0]}

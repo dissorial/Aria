@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 
 import PlayPause from './PlayPause';
 
-const getClassName = (artistId, activeSong, song) => {
-  if (artistId) {
-    return activeSong?.id === song?.id ? 'bg-[#4c426e]' : 'bg-transparent';
-  }
-  return activeSong?.title === song?.title ? 'bg-[#4c426e]' : 'bg-transparent';
-};
 const SongBar = ({
   song,
   i,
@@ -22,14 +16,6 @@ const SongBar = ({
   const idk = isOnArtistPage ? 'v2' : 'v1';
   return (
     <div className="flex px-4 sm-w-1/4 py-4 items-center bg-[#172F2F] bg-opacity-60 justify-between p-2 rounded-lg cursor-pointer mb-2 hover:bg-opacity-100 hover:shadow-md">
-      {/* <div
-      className={`flex px-4 sm-w-1/4 py-4 items-center bg-[#172F2F] justify-between hover:bg-[#1D3B3B] ${getClassName(
-        artistId,
-        activeSong,
-        song,
-      )} py-2 p-2 rounded-lg cursor-pointer mb-2`}
-    > */}
-      {/* <h3 className="text-white">{i + 1}.</h3> */}
       <div className="flex items-center w-5/6">
         <img
           className="w-1/4 h-full rounded-lg"

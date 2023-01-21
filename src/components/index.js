@@ -13,7 +13,6 @@ import Loader from './Loader';
 import Error from './Error';
 import SongDetailsLyricsV1 from './SongDetailsLyricsV1';
 import SongDetailsLyricsV2 from './SongDetailsLyricsV2';
-import SidebarNew from './SidebarNew';
 
 export {
   Sidebar,
@@ -31,5 +30,4 @@ export {
   Error,
   SongDetailsLyricsV1,
   SongDetailsLyricsV2,
-  SidebarNew,
 };

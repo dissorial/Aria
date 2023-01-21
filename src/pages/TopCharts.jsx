@@ -16,7 +16,7 @@ const TopCharts = () => {
     (song) => song.images && song.images.coverart,
   );
   return (
-    <div className="flex flex-col py-6 px-6">
+    <div className="flex flex-col pt-6 pb-32 px-6">
       <h1 className="font-bold text-4xl text-white text-center mt-4 mb-10 pl-4">
         Top charts
       </h1>
