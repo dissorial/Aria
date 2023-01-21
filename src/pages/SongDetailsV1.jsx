@@ -1,33 +1,11 @@
-import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  Error,
-  Loader,
-  RelatedSongsV1,
-  SongDetailsLyricsV1,
-  SongDetailsHeaderV1,
-} from '../components';
+import { RelatedSongsV1, SongDetailsHeaderV1 } from '../components';
 
 import { setActiveSong, playPause } from '../redux/features/playerSlice';
-import {
-  useGetSongDetailsV1Query,
-  useGetSongRelatedQuery,
-} from '../redux/services/shazamCore';
 
-const SongDetailsV1 = () => {
+const SongDetailsV1 = ({ songData, data }) => {
   const dispatch = useDispatch();
-  const { songid } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const {
-    data,
-    isFetching: isFetchingRelatedSongs,
-    error,
-  } = useGetSongRelatedQuery({ songid });
-  const { data: songData, isFetching: isFetchingSongDetails } = useGetSongDetailsV1Query({ songid });
-
-  if (isFetchingSongDetails || isFetchingRelatedSongs) return <Loader title="Searching song details" />;
-
-  if (error) return <Error />;
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
@@ -38,18 +16,24 @@ const SongDetailsV1 = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pb-24">
       <SongDetailsHeaderV1 songData={songData} />
 
       <div className="py-12 px-6">
-        <RelatedSongsV1
-          data={data}
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          handlePauseClick={handlePauseClick}
-          handlePlayClick={handlePlayClick}
-          cardTitle="Related songs"
-        />
+        {data ? (
+          <RelatedSongsV1
+            data={data}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            handlePauseClick={handlePauseClick}
+            handlePlayClick={handlePlayClick}
+            cardTitle="Related songs"
+          />
+        ) : (
+          <h2 className="text-white text-3xl font-bold mb-8">
+            No related songs found
+          </h2>
+        )}
       </div>
     </div>
   );

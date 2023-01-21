@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const SongDetailsHeaderV1 = ({ songData }) => {
+const SongDetailsHeaderV2 = ({ songData }) => {
   if (!songData) return null;
   const dataObject = Object.values(songData?.resources['shazam-songs'])[0];
   const { artist, title, images } = dataObject.attributes;
@@ -22,4 +22,4 @@ const SongDetailsHeaderV1 = ({ songData }) => {
   );
 };
 
-export default SongDetailsHeaderV1;
+export default SongDetailsHeaderV2;
